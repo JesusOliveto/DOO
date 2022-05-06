@@ -46,10 +46,10 @@ cobrado-->join
 
 join -->facturado
 
-facturado-->registrado
+facturado-->registrado :registrarFactura()
 
 enviado-->pospuesto :no se entregó en el dia
-pospuesto-->listado
+pospuesto-->listado :actualizarFecha()
 
 registrado-->[*]
 
