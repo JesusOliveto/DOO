@@ -3,7 +3,6 @@ Realizar el diagrama de clases  utilizando UML
 @startuml Clases
 
 class Cliente{
-    -persona : Persona
     -pedido : Pedido
     -razonSocial:String
 	-direccion:String
@@ -17,11 +16,13 @@ class Persona{
 	-nombre:String
 	-apellido:String
 	-telefono:String
+	-direccion:Direccion
 
 }
 
+
+
 class Empleado{
-    -persona:Persona
     -cargo:String
     -salario:Double
 	-distribuidores:ArrayList<Distribuidor>
@@ -73,6 +74,7 @@ class DetallePedido{
 class Producto{
 	-nombre:String
 	-precio:Double
+	+actualizarPrecio()
 
 }
 
@@ -104,9 +106,9 @@ class CancelacionPedido{
 
 
 
-Persona "1"--"*" Empleado
+Persona "1"<|--"*" Empleado
 Empleado o--"*" Distribuidor
-Persona "1"--"*" Cliente
+Persona "1"<|--"*" Cliente
 Barrio "1"*--"*" Direccion
 Zona "1"*--"*" Barrio
 Direccion "1"--"*" Persona
