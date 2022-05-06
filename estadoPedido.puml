@@ -1,5 +1,4 @@
-'estados del pedido
-@startuml
+@startuml estados del pedido
 
 [*]-->listado
 

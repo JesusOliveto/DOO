@@ -1,5 +1,4 @@
-'estados del cliente
-@startuml 
+@startuml estados del cliente
 
 [*] --> ingresado
 state ingresado{
