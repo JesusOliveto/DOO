@@ -1,0 +1,39 @@
+@startuml 
+
+[*] --> ingresoCliente
+state ingresoCliente{
+	
+}
+
+ingresoCliente --> verificarCliente : pedido de los datos del cliente
+
+
+state verificarCliente{
+
+}
+
+verificarCliente --> registrarPedido :registro de los datos del pedido
+verificarCliente --> registrarCliente :no se encuenta el cliente en la base de datos
+
+state registrarCliente{
+	
+}
+
+registrarCliente --> registrarPedido
+registrarCliente-->[*]
+informarPrecio-->[*]
+
+state registrarPedido{
+	
+}
+
+registrarPedido --> informarPrecio
+
+state informarPrecio{
+	
+}
+informarPrecio --> registrarPedido : aceptacion de las tarifas
+
+registrarPedido --> [*]
+
+@enduml
