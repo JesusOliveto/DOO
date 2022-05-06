@@ -1,0 +1,73 @@
+@startuml Empresa
+package Empresa{
+
+    'hide empty methods
+
+    Abstract Class Persona{
+        -nombre: String
+        -apellido: String
+        -dni: String
+        -direccion: Direccion
+        -telefono: Telefono
+   }
+
+    Abstract Class Empleado{
+        -jefe: Empleado
+        -datosEmpleado: Persona
+        -legajo:int
+    }
+    
+    Class Mecanico{
+        -datosMecanico: Empleado
+        -especialidad: Especialidad
+	-turno: string
+    }
+
+    Class Oficinista{
+        -datosOficinista: Empleado
+     } 
+
+    'Hija de Persona
+    Class Cliente{
+        -nroCliente: Int
+        -datosPersonales: Persona
+        -vehiculos: list<Vehiculos>
+    }
+
+
+    Class Turno{
+       -diayHora: Date
+       -mecanicoAsignado: Mecanico
+       -personalTelefonica: bool
+       -cliente: Cliente
+       -vehiculo: Vehiculo
+       -estado: bool
+    }
+
+    Class FichaMecanica{
+        -mecanico: Mecanico
+        -cliente: Cliente
+        -descripcion: string
+        -dia: date
+        -gastos: string
+        -tiempoEmpleado:int
+        -conformidad: bool
+    }
+    
+    'Relaciones
+    
+    Persona "1" --> "1-n" Turno
+    
+    Cliente --|> Persona
+    
+    Empleado --> Empleado
+    Empleado --|> Persona
+    
+    Mecanico --|> Empleado
+	Oficinista -right-|> Empleado
+    
+    FichaMecanica "1" --> "1" Mecanico
+    FichaMecanica "1" --> "1" Cliente
+
+}
+@enduml

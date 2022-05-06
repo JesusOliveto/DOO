@@ -1,0 +1,23 @@
+@startuml
+state solicitado {
+    [*] -> verazKo 
+    verazOk -> verazKo : [veraz==true]
+    verazKo -> verazOk : [veraz==false]
+    --
+    [*] -> garantiaKo
+    garantiaOk -> garantiaKo : [garantia==false]
+    garantiaKo -> garantiaOk : [garantia==true]
+    --
+    [*] -> ingresosKo
+    ingresosOk -> ingresosKo : [ingresos==false]
+    ingresosKo -> ingresosOk : [ingresos==true]
+}
+[*] -> solicitado
+solicitado --> aceptado : [requisitos==true]
+aceptado --> confirmado : confirmar()
+aceptado --> cancelado : cancelar()
+confirmado -> [*]
+cancelado ---> [*]
+solicitado --> rechazado : [requisistos==false]
+rechazado --> [*]
+@enduml

@@ -1,0 +1,42 @@
+@startuml PatronDAO
+package "DAO" <<Database>>{
+		package "FabricaDAO"{
+			interface EmpleadoDAO
+			interface ClienteDAO
+			interface TurnoDAO
+			interface FichaMecanicaDAO
+			interface SegurosDAO
+
+			abstract class FabricaDAO
+
+			class ClienteDAOImpl
+			class EmpleadoDAOImpl
+			class TurnoDAOImpl
+			class ConexionSQLite
+			class SqlFabricaDAO
+			class FichaMecanicaDAOImpl
+			class SegurosDAOImpl
+		}
+
+		EmpleadoDAOImpl -up-> ConexionSQLite 
+		ClienteDAOImpl -up-> ConexionSQLite
+		TurnoDAOImpl -up-> ConexionSQLite 
+		FichaMecanicaDAOImpl -up-> ConexionSQLite 
+		SegurosDAOImpl -up-> ConexionSQLite 
+
+		EmpleadoDAOImpl ..|> EmpleadoDAO
+		ClienteDAOImpl ..|> ClienteDAO
+		TurnoDAOImpl ..|> TurnoDAO
+		FichaMecanicaDAOImpl  ..|> FichaMecanicaDAO
+		SegurosDAOImpl  ..|> SegurosDAO
+
+
+		SqlFabricaDAO -up-|> FabricaDAO
+		SqlFabricaDAO ..> EmpleadoDAOImpl
+		SqlFabricaDAO ..> TurnoDAOImpl
+		SqlFabricaDAO ..> ClienteDAOImpl
+		SqlFabricaDAO ..> FichaMecanicaDAOImpl
+		SqlFabricaDAO ..> SegurosDAOImpl
+
+	}
+@enduml
