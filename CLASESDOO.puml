@@ -22,6 +22,7 @@ class Persona{
 
 
 
+
 class Empleado{
     -cargo:String
     -salario:Double
@@ -60,6 +61,7 @@ class Pedido{
 	-detalles:ArrayList<DetallePedido>
 	-fecha:String
 	-total:Double
+	+posponerPedido(fecha:String)
 
 }
 
@@ -79,7 +81,7 @@ class Producto{
 }
 
 class Factura{
-	-pedido:Pedido
+	'-pedido:Pedido
 	-empleado:Empleado
 	-cliente:Cliente
 	-fecha:String
@@ -108,18 +110,19 @@ class CancelacionPedido{
 
 Persona "1"<|--"*" Empleado
 Empleado o--"*" Distribuidor
-Persona "1"<|--"*" Cliente
+Persona "1"<|-up-"*" Cliente
 Barrio "1"*--"*" Direccion
 Zona "1"*--"*" Barrio
-Direccion "1"--"*" Persona
+Direccion "1"-up-"*" Persona
+Pedido "1"--"1" Cliente
 
-DetallePedido "1"--"*" Producto
-Factura "1"--"1" Pedido
+DetallePedido o--"*" Producto
+'Factura "1"--"1" Pedido
 Factura "1"--"1" Empleado
 Factura "1"--"1" Cliente
 DetalleFactura "*"--*"1" Factura
 DetallePedido "*"--*"1" Pedido
-DetalleFactura "1"--"*" Producto
+DetalleFactura o--"*" Producto
 CancelacionPedido "1"--"1" Pedido
 CancelacionPedido "1"--"1" Empleado
 
